@@ -24,18 +24,18 @@ def vm():
         return state, 200
 
 
-@app.route('/vm/lock')
+@app.route('/vm/lock', methods=['LOCK'])
 def lock():
     payload = request.json
-    print(payload)
-    return jsonify({'version': 1}), 200
+    app.logger.info("LOCK reques {}".format(payload))
+    return {}, 200
 
 
-@app.route('/vm/unlock')
+@app.route('/vm/unlock', methods=['UNLOCK'])
 def unlock():
     payload = request.json
-    print(payload)
-    return jsonify({'version': 1}), 200
+    app.logger.info("UNLOCK request {}".format(payload))
+    return {}, 200
 
 if __name__ == '__main__':
     app.run(debug=True)
