@@ -39,5 +39,5 @@ def get_state():
 def remove_state():
     conn = create_connection()
     c = conn.cursor()
-    c.execute("DELETE * FROM state WHERE id='state")
+    c.execute("DELETE * FROM state WHERE id='state'")
     conn.commit()
