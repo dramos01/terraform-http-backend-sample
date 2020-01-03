@@ -1,7 +1,16 @@
 
 import logging
+import os
 from flask import Flask, escape, request, jsonify
 from db import create_connection, db_init, get_state, save_state, remove_state
+from utils import titlecase
+
+from werkzeug.utils import import_string
+
+
+cfg = import_string('config.{env}Config'.format(env=titlecase(os.getenv('FLASK_ENV'))))()
+app.config.from_object(cfg)
+
 
 app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
@@ -37,5 +46,5 @@ def unlock():
     app.logger.info("UNLOCK request {}".format(payload))
     return {}, 200
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
