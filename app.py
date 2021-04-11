@@ -9,11 +9,12 @@ from werkzeug.utils import import_string
 
 
 cfg = import_string('config.{env}Config'.format(env=titlecase(os.getenv('FLASK_ENV'))))()
-app.config.from_object(cfg)
 
 
 app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
+app.config.from_object(cfg)
+
 db_init()
 
 @app.route('/vm', methods=['GET', 'POST', 'DELETE'])
@@ -46,5 +47,5 @@ def unlock():
     app.logger.info("UNLOCK request {}".format(payload))
     return {}, 200
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+     app.run(debug=True)

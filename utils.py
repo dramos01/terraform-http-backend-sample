@@ -1,4 +1,6 @@
 def titlecase(string):
+    if not string:
+      return ''
     if not isinstance(string, str):
         raise TypeError('Input must be string')
     if len(string) == 0:
